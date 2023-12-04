@@ -4,9 +4,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:students_app/controllers/validator/validators.dart';
+import 'package:students_app/core/color/colors.dart';
+import 'package:students_app/core/constants/constants.dart';
 import 'package:students_app/database/functions/db_functions.dart';
 import 'package:students_app/model/data_model.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:students_app/presentation/registration/widget/illustration.dart';
 
 XFile? images;
 
@@ -31,24 +34,15 @@ class _StudentsRegisterState extends State<StudentsRegister> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(251, 15, 82, 109),
+      backgroundColor: kMainBackgroundColor,
       body: ListView(
         children: [
           const SizedBox(
             height: 30,
           ),
-          Align(
-            child: Text(
-              "Register student",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.staatliches(
-                  textStyle: const TextStyle(
-                color: Colors.black,
-                fontSize: 30,
-              )),
-            ),
-          ),
+        
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Form(
@@ -69,7 +63,7 @@ class _StudentsRegisterState extends State<StudentsRegister> {
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/images/download.png"),
+                              image: AssetImage("assets/avatar.jpg"),
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -81,111 +75,93 @@ class _StudentsRegisterState extends State<StudentsRegister> {
                     height: 30,
                   ),
                   TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your  full name';
-                      } else {
-                        return null;
-                      }
-                    },
+                    textCapitalization: TextCapitalization.words,
+                    validator: (value)=>nameValidator(value),
+                    
                     controller: _nameController,
-                    decoration: InputDecoration(
-                      // labelText: 'Name',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      filled: true,
-                      hintStyle: const TextStyle(
-                          color: Color.fromARGB(255, 71, 66, 66)),
-                      fillColor: Colors.white70,
-                      hintText: 'Student name',
-                    ),
+                    decoration:  const InputDecoration(
+                      hintText: 'Enter name',
+                      hintStyle: TextStyle(color: kGreyColor),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: kMainTextColor)),
+                      border: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: kMainTextColor, width: 2))),
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your  full name';
-                      } else {
-                        return null;
-                      }
-                    },
+                    validator:(value)=>parentNameValidator(value),
                     controller: _parentsNameController,
-                    decoration: InputDecoration(
-                        // labelText: 'Parent Name',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        filled: true,
-                        hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 71, 66, 66)),
-                        fillColor: Colors.white70,
-                        hintText: 'Parent name'),
+                    decoration:  const InputDecoration(
+                      hintText: 'Enter parent name',
+                      hintStyle: TextStyle(color: kGreyColor),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: kMainTextColor)),
+                      border: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: kMainTextColor, width: 2))),
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
                     keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your age';
-                      } else if (int.parse(value) > 100 ||
-                          int.parse(value) < 18) {
-                        return 'Please enter a valid age';
-                      } else {
-                        return null;
-                      }
-                    },
+                    validator: (value) =>ageValidator(value),
                     controller: _ageController,
-                    decoration: InputDecoration(
-                        // labelText: 'Age',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        filled: true,
-                        hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 71, 66, 66)),
-                        fillColor: Colors.white70,
-                        hintText: 'Age'),
+                    decoration: const InputDecoration(
+                      hintText: 'Enter age',
+                      hintStyle: TextStyle(color: kGreyColor),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: kMainTextColor)),
+                      border: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: kMainTextColor, width: 2))),
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
                     keyboardType: TextInputType.number,
-                    validator: (value) {
-                      String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-                      RegExp regExp = RegExp(pattern);
-                      if (value == null ||
-                          value.isEmpty ||
-                          value.length != 10) {
-                        return 'Please enter mobile number';
-                      } else if (!regExp.hasMatch(value)) {
-                        return 'Please enter valid mobile number';
-                      }
-                      return null;
-                    },
+                    validator: (value)=>mobileNumberValidator(value),
                     controller: _mobileNumberController,
-                    decoration: InputDecoration(
-                        // labelText: 'Mobile Number',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        filled: true,
-                        hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 71, 66, 66)),
-                        fillColor: Colors.white70,
-                        hintText: 'Mobile number'),
+                    decoration:  const InputDecoration(
+                      hintText: 'Enter mobile number',
+                      hintStyle: TextStyle(color: kGreyColor),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: kMainTextColor)),
+                      border: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: kMainTextColor, width: 2))),
                   ),
                   const SizedBox(height: 25),
-                  FloatingActionButton.extended(
-                    backgroundColor: Colors.lightBlue,
-                    foregroundColor: Colors.white,
-                    onPressed: () {
-                      if (_FormKey.currentState!.validate()) {
-                        onAddStudententButtonClicked(context);
-                      }
-                    },
-                    // icon: Icon(Icons.save),
-                    label: const Text('SUBMIT'),
-                  )
+                  Stack(
+                    children: [
+                      Column(
+                        children: [
+                          kHeight20,
+                          Illustration(size:size ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          kWidth50,
+                          kWidth10,
+                          SizedBox(
+                            height: 40,
+                            width: 200,
+                            child: FloatingActionButton.extended(
+                              backgroundColor: kButtonColor,
+                              foregroundColor: Colors.white,
+                              onPressed: () {
+                                if (_FormKey.currentState!.validate()) {
+                                  onAddStudententButtonClicked(context);
+                                }
+                              },
+                              // icon: Icon(Icons.save),
+                              label: const Text('SUBMIT'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  
                 ],
               ),
             ),

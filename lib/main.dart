@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:students_app/model/data_model.dart';
-import 'package:students_app/screens/home_screen.dart';
+import 'package:students_app/presentation/mian_page/main_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Students Data',
-      home: HomeScreen(),
+      home: BottomNav(),
     );
   }
 }

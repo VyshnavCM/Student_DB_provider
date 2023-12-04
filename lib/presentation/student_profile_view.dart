@@ -4,9 +4,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:students_app/screens/home_screen.dart';
+// import 'package:students_app/presentation/home_screen.dart';
 
-import 'package:students_app/screens/students_list.dart';
+import 'package:students_app/presentation/student_list/students_list.dart';
 
 class StudentProfileView extends StatelessWidget {
   const StudentProfileView({super.key});
