@@ -209,132 +209,7 @@ class _StudentsListState extends State<StudentsList> {
     },
   ),
 )
-                // Expanded(
-                //   child: ValueListenableBuilder(
-                //     valueListenable: studentListNotifier,
-                //     builder: (BuildContext ctx, List<StudentModel> studentsList,
-                //         Widget? child) {
-                //       isListEmpty = studentsList.isEmpty;
-                //       return isListEmpty
-                //           ? const Center(
-                //               child: Text('Students record is Empty'),
-                //             )
-                //           : ListView.builder(
-                //               shrinkWrap: true,
-                //               itemBuilder: (context1, index) {
-                //                 final data = studentsList[index];
-                //                 return Card(
-                //                   shape: RoundedRectangleBorder(
-                //                       borderRadius: BorderRadius.circular(10)),
-                //                   color: const Color.fromARGB(255, 243, 244, 245),
-                //                   child: ListTile(
-                //                     onTap: () {
-                //                       FocusScope.of(context).unfocus();
-                //                       Student = StudentModel(
-                //                         name: data.name,
-                //                         parentName: data.parentName,
-                //                         age: data.age,
-                //                         mobileNumber: data.mobileNumber,
-                //                         images: data.images,
-                //                       );
-    
-                //                       Navigator.of(context).push(
-                //                         MaterialPageRoute(
-                //                           builder: (ctx1) =>
-                //                               const StudentProfileView(),
-                //                         ),
-                //                       );
-                //                     },
-                //                     leading: CircleAvatar(
-                //                       backgroundImage:
-                //                           FileImage(File(data.images)),
-                //                       radius: 25,
-                //                     ),
-                //                     title: Text(
-                //                       data.name.toUpperCase(),
-                //                       style: const TextStyle(
-                //                           fontWeight: FontWeight.bold),
-                //                     ),
-                //                     // subtitle: Text(data.age),
-                //                     trailing: Row(
-                //                       mainAxisSize: MainAxisSize.min,
-                //                       children: [
-                //                         IconButton(
-                //                           onPressed: () {
-                //                             editField(
-                //                                 context1, studentsList[index]);
-                //                           },
-                //                           icon: const Icon(
-                //                             Icons.edit,
-                //                             color: Colors.blueGrey,
-                //                           ),
-                //                         ),
-                //                         IconButton(
-                //                           onPressed: () {
-                //                             showDialog(
-                //                                 context: context,
-                //                                 builder: (ctx) {
-                //                                   return Padding(
-                //                                     padding: const EdgeInsets
-                //                                             .symmetric(
-                //                                         horizontal: 10.0),
-                //                                     child: AlertDialog(
-                //                                       title:
-                //                                           const Text('Delete '),
-                //                                       content: const Text(
-                //                                           'Are you sure want to delete ?'),
-                //                                       actions: [
-                //                                         ElevatedButton(
-                //                                           onPressed: () {
-                //                                             deleteStudent(data);
-                //                                             Navigator.of(ctx)
-                //                                                 .pop();
-                //                                           },
-                //                                           child:
-                //                                               const Text('Yes'),
-                //                                           style: ElevatedButton
-                //                                               .styleFrom(
-                //                                                   backgroundColor:
-                //                                                       const Color
-                //                                                               .fromARGB(
-                //                                                           236,
-                //                                                           143,
-                //                                                           138,
-                //                                                           138)),
-                //                                         ),
-                //                                         ElevatedButton(
-                //                                           onPressed: () {
-                //                                             Navigator.of(ctx)
-                //                                                 .pop();
-                //                                           },
-                //                                           child: const Text('No'),
-                //                                           style: ElevatedButton
-                //                                               .styleFrom(
-                //                                                   backgroundColor:
-                //                                                       Colors
-                //                                                           .lightBlue),
-                //                                         )
-                //                                       ],
-                //                                     ),
-                //                                   );
-                //                                 });
-                //                           },
-                //                           icon: const Icon(
-                //                             Icons.delete,
-                //                             color:
-                //                                 Color.fromARGB(255, 250, 102, 91),
-                //                           ),
-                //                         ),
-                //                       ],
-                //                     ),
-                //                   ),
-                //                 );
-                //               },
-                //               itemCount: studentsList.length,
-                //             );
-                //     },
-                //   ),
-                // )
+                
               ],
             ),
           ),
@@ -367,17 +242,7 @@ class _StudentsListState extends State<StudentsList> {
                   const SizedBox(
                     height: 10,
                   ),
-                  // Align(
-                  //   child: Text(
-                  //     "Edit Student Details",
-                  //     textAlign: TextAlign.center,
-                  //     style: GoogleFonts.poppins(
-                  //         textStyle: const TextStyle(
-                  //       color: Colors.black,
-                  //       fontSize: 25,
-                  //     )),
-                  //   ),
-                  // ),
+                 
               
                   GestureDetector(
                     onTap: () {
